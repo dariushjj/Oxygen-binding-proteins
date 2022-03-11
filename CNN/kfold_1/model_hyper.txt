@@ -1,0 +1,1 @@
+{"Dropout": 0.07311927818575781, "Dropout_1": 0.44210545657158923, "Dropout_2": 0.7361573515313542, "batch_size": 3, "epochs": 2, "filters": 2, "filters_1": 2, "filters_2": 2, "kernel_size": 2, "kernel_size_1": 1, "kernel_size_2": 2, "l1_l2": 0, "lr": 0, "pool_size": 0, "strides": 2}

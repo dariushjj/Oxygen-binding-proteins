@@ -1,0 +1,1000 @@
+Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0923 16:33:50.255290 139637525370688 deprecation_wrapper.py:119] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0923 16:33:50.258323 139637525370688 deprecation_wrapper.py:119] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0923 16:33:50.258707 139637525370688 deprecation_wrapper.py:119] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0923 16:33:50.286053 139637525370688 deprecation_wrapper.py:119] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:133: The name tf.placeholder_with_default is deprecated. Please use tf.compat.v1.placeholder_with_default instead.
+
+W0923 16:33:50.292573 139637525370688 deprecation.py:506] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0923 16:33:50.354048 139637525370688 nn_ops.py:4224] Large dropout rate: 0.73616 (>0.5). In TensorFlow 2.x, dropout() uses dropout rate instead of keep_prob. Please ensure that this is intended.
+W0923 16:33:50.366514 139637525370688 deprecation_wrapper.py:119] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+W0923 16:33:50.489914 139637525370688 deprecation_wrapper.py:119] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+W0923 16:33:50.495692 139637525370688 deprecation_wrapper.py:119] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3295: The name tf.log is deprecated. Please use tf.math.log instead.
+
+W0923 16:33:50.607560 139637525370688 deprecation.py:323] From /home/jiajunh/miniconda3/envs/py36/lib/python3.6/site-packages/tensorflow/python/ops/math_grad.py:1250: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2019-09-23 16:33:51.467519: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2019-09-23 16:33:51.479061: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 1999950000 Hz
+2019-09-23 16:33:51.484733: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7effed018fd0 executing computations on platform Host. Devices:
+2019-09-23 16:33:51.484784: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-09-23 16:33:51.486739: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcuda.so.1
+2019-09-23 16:33:55.697107: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1640] Found device 0 with properties: 
+name: Tesla K40m major: 3 minor: 5 memoryClockRate(GHz): 0.745
+pciBusID: 0000:83:00.0
+2019-09-23 16:33:55.698061: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcudart.so.9.2
+2019-09-23 16:33:55.700465: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcublas.so.9.2
+2019-09-23 16:33:55.702822: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcufft.so.9.2
+2019-09-23 16:33:55.703713: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcurand.so.9.2
+2019-09-23 16:33:55.706538: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcusolver.so.9.2
+2019-09-23 16:33:55.708919: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcusparse.so.9.2
+2019-09-23 16:33:55.714824: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcudnn.so.7
+2019-09-23 16:33:55.716728: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1763] Adding visible gpu devices: 0
+2019-09-23 16:33:55.716805: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcudart.so.9.2
+2019-09-23 16:33:55.915961: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1181] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-09-23 16:33:55.916009: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1187]      0 
+2019-09-23 16:33:55.916024: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1200] 0:   N 
+2019-09-23 16:33:55.918727: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1326] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10793 MB memory) -> physical GPU (device: 0, name: Tesla K40m, pci bus id: 0000:83:00.0, compute capability: 3.5)
+2019-09-23 16:33:55.921508: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7effea52b680 executing computations on platform CUDA. Devices:
+2019-09-23 16:33:55.921537: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Tesla K40m, Compute Capability 3.5
+2019-09-23 16:33:57.578895: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcublas.so.9.2
+2019-09-23 16:33:57.715355: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcudnn.so.7
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_embed (InputLayer)        (None, 800)          0                                            
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 800, 128)     2560        input_embed[0][0]                
+__________________________________________________________________________________________________
+input_extra (InputLayer)        (None, 800, 20)      0                                            
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 800, 148)     0           embedding_1[0][0]                
+                                                                 input_extra[0][0]                
+__________________________________________________________________________________________________
+conv1 (Conv1D)                  (None, 794, 128)     132736      concatenate_1[0][0]              
+__________________________________________________________________________________________________
+drop1 (Dropout)                 (None, 794, 128)     0           conv1[0][0]                      
+__________________________________________________________________________________________________
+conv2 (Conv1D)                  (None, 790, 128)     82048       drop1[0][0]                      
+__________________________________________________________________________________________________
+drop2 (Dropout)                 (None, 790, 128)     0           conv2[0][0]                      
+__________________________________________________________________________________________________
+conv3 (Conv1D)                  (None, 784, 128)     114816      drop2[0][0]                      
+__________________________________________________________________________________________________
+drop3 (Dropout)                 (None, 784, 128)     0           conv3[0][0]                      
+__________________________________________________________________________________________________
+maxpooling (MaxPooling1D)       (None, 49, 128)      0           drop3[0][0]                      
+__________________________________________________________________________________________________
+flatten_1 (Flatten)             (None, 6272)         0           maxpooling[0][0]                 
+__________________________________________________________________________________________________
+dense1 (Dense)                  (None, 256)          1605888     flatten_1[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_1 (BatchNor (None, 256)          1024        dense1[0][0]                     
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 9)            2313        batch_normalization_1[0][0]      
+==================================================================================================
+Total params: 1,941,385
+Trainable params: 1,940,873
+Non-trainable params: 512
+__________________________________________________________________________________________________
+None
+Train on 1763 samples, validate on 441 samples
+Epoch 1/200
+
+ 256/1763 [===>..........................] - ETA: 48s - loss: 31.9004 - acc: 0.0859
+ 512/1763 [=======>......................] - ETA: 20s - loss: 30.8150 - acc: 0.4062
+ 768/1763 [============>.................] - ETA: 11s - loss: 30.1156 - acc: 0.5026
+1024/1763 [================>.............] - ETA: 6s - loss: 29.4651 - acc: 0.5439 
+1280/1763 [====================>.........] - ETA: 3s - loss: 28.8183 - acc: 0.5805
+1536/1763 [=========================>....] - ETA: 1s - loss: 28.1561 - acc: 0.6068
+1763/1763 [==============================] - 12s 7ms/step - loss: 27.5764 - acc: 0.6313 - val_loss: 23.0114 - val_acc: 0.5057
+
+Epoch 00001: val_loss improved from inf to 23.01145, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 2/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 22.9291 - acc: 0.7148
+ 512/1763 [=======>......................] - ETA: 1s - loss: 22.1840 - acc: 0.7480
+ 768/1763 [============>.................] - ETA: 1s - loss: 21.5603 - acc: 0.7630
+1024/1763 [================>.............] - ETA: 1s - loss: 20.9903 - acc: 0.7676
+1280/1763 [====================>.........] - ETA: 0s - loss: 20.4239 - acc: 0.7680
+1536/1763 [=========================>....] - ETA: 0s - loss: 19.8627 - acc: 0.7708
+1763/1763 [==============================] - 3s 2ms/step - loss: 19.3703 - acc: 0.7737 - val_loss: 15.2932 - val_acc: 0.7438
+
+Epoch 00002: val_loss improved from 23.01145 to 15.29321, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 3/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 15.1115 - acc: 0.7734
+ 512/1763 [=======>......................] - ETA: 1s - loss: 14.6023 - acc: 0.7930
+ 768/1763 [============>.................] - ETA: 1s - loss: 14.1617 - acc: 0.7812
+1024/1763 [================>.............] - ETA: 1s - loss: 13.6729 - acc: 0.7822
+1280/1763 [====================>.........] - ETA: 0s - loss: 13.2029 - acc: 0.7891
+1536/1763 [=========================>....] - ETA: 0s - loss: 12.8048 - acc: 0.7819
+1763/1763 [==============================] - 3s 2ms/step - loss: 12.4233 - acc: 0.7822 - val_loss: 9.8182 - val_acc: 0.6145
+
+Epoch 00003: val_loss improved from 15.29321 to 9.81823, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 4/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 9.1026 - acc: 0.8477
+ 512/1763 [=======>......................] - ETA: 1s - loss: 8.8020 - acc: 0.8438
+ 768/1763 [============>.................] - ETA: 1s - loss: 8.5478 - acc: 0.8268
+1024/1763 [================>.............] - ETA: 1s - loss: 8.2412 - acc: 0.8223
+1280/1763 [====================>.........] - ETA: 0s - loss: 7.9421 - acc: 0.8250
+1536/1763 [=========================>....] - ETA: 0s - loss: 7.7006 - acc: 0.8184
+1763/1763 [==============================] - 3s 2ms/step - loss: 7.4923 - acc: 0.8145 - val_loss: 8.7908 - val_acc: 0.3424
+
+Epoch 00004: val_loss improved from 9.81823 to 8.79076, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 5/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 5.6883 - acc: 0.8281
+ 512/1763 [=======>......................] - ETA: 1s - loss: 5.5029 - acc: 0.8281
+ 768/1763 [============>.................] - ETA: 1s - loss: 5.3896 - acc: 0.8281
+1024/1763 [================>.............] - ETA: 1s - loss: 5.2716 - acc: 0.8271
+1280/1763 [====================>.........] - ETA: 0s - loss: 5.1594 - acc: 0.8313
+1536/1763 [=========================>....] - ETA: 0s - loss: 5.0746 - acc: 0.8320
+1763/1763 [==============================] - 3s 2ms/step - loss: 5.0057 - acc: 0.8287 - val_loss: 7.5487 - val_acc: 0.3424
+
+Epoch 00005: val_loss improved from 8.79076 to 7.54874, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 6/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 4.2537 - acc: 0.8438
+ 512/1763 [=======>......................] - ETA: 1s - loss: 4.1972 - acc: 0.8398
+ 768/1763 [============>.................] - ETA: 1s - loss: 4.1226 - acc: 0.8503
+1024/1763 [================>.............] - ETA: 1s - loss: 4.0408 - acc: 0.8486
+1280/1763 [====================>.........] - ETA: 0s - loss: 3.9499 - acc: 0.8531
+1536/1763 [=========================>....] - ETA: 0s - loss: 3.8582 - acc: 0.8581
+1763/1763 [==============================] - 3s 2ms/step - loss: 3.7950 - acc: 0.8559 - val_loss: 6.3541 - val_acc: 0.3424
+
+Epoch 00006: val_loss improved from 7.54874 to 6.35414, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 7/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 3.2320 - acc: 0.8555
+ 512/1763 [=======>......................] - ETA: 1s - loss: 3.1602 - acc: 0.8633
+ 768/1763 [============>.................] - ETA: 1s - loss: 3.1070 - acc: 0.8672
+1024/1763 [================>.............] - ETA: 1s - loss: 3.0347 - acc: 0.8740
+1280/1763 [====================>.........] - ETA: 0s - loss: 2.9704 - acc: 0.8750
+1536/1763 [=========================>....] - ETA: 0s - loss: 2.9099 - acc: 0.8724
+1763/1763 [==============================] - 3s 2ms/step - loss: 2.8386 - acc: 0.8803 - val_loss: 4.9755 - val_acc: 0.3424
+
+Epoch 00007: val_loss improved from 6.35414 to 4.97553, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 8/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 2.4398 - acc: 0.8711
+ 512/1763 [=======>......................] - ETA: 1s - loss: 2.3985 - acc: 0.8789
+ 768/1763 [============>.................] - ETA: 1s - loss: 2.4010 - acc: 0.8685
+1024/1763 [================>.............] - ETA: 1s - loss: 2.3688 - acc: 0.8691
+1280/1763 [====================>.........] - ETA: 0s - loss: 2.3149 - acc: 0.8812
+1536/1763 [=========================>....] - ETA: 0s - loss: 2.3042 - acc: 0.8757
+1763/1763 [==============================] - 3s 2ms/step - loss: 2.2773 - acc: 0.8798 - val_loss: 4.7797 - val_acc: 0.3424
+
+Epoch 00008: val_loss improved from 4.97553 to 4.77966, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 9/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.9181 - acc: 0.9180
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.9518 - acc: 0.8945
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.9761 - acc: 0.8880
+1024/1763 [================>.............] - ETA: 1s - loss: 1.9853 - acc: 0.8789
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.9662 - acc: 0.8867
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.9614 - acc: 0.8822
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.9461 - acc: 0.8837 - val_loss: 3.9294 - val_acc: 0.3424
+
+Epoch 00009: val_loss improved from 4.77966 to 3.92945, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 10/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.7964 - acc: 0.8906
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.7010 - acc: 0.9023
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.6316 - acc: 0.9089
+1024/1763 [================>.............] - ETA: 1s - loss: 1.6111 - acc: 0.9072
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.6311 - acc: 0.8977
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.6239 - acc: 0.9010
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.6372 - acc: 0.8973 - val_loss: 4.2940 - val_acc: 0.3424
+
+Epoch 00010: val_loss did not improve from 3.92945
+Epoch 11/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.5104 - acc: 0.9141
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.5372 - acc: 0.9082
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.5273 - acc: 0.9115
+1024/1763 [================>.............] - ETA: 1s - loss: 1.5147 - acc: 0.9082
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.5119 - acc: 0.9055
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.5014 - acc: 0.9043
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.5044 - acc: 0.8996 - val_loss: 3.4409 - val_acc: 0.3424
+
+Epoch 00011: val_loss improved from 3.92945 to 3.44094, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 12/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.3724 - acc: 0.9141
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.3772 - acc: 0.9062
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.3648 - acc: 0.9036
+1024/1763 [================>.............] - ETA: 1s - loss: 1.3573 - acc: 0.9023
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.3423 - acc: 0.9000
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.3273 - acc: 0.9049
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.3384 - acc: 0.9007 - val_loss: 3.9986 - val_acc: 0.3424
+
+Epoch 00012: val_loss did not improve from 3.44094
+Epoch 13/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.3988 - acc: 0.8789
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.4124 - acc: 0.8789
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.4108 - acc: 0.8854
+1024/1763 [================>.............] - ETA: 1s - loss: 1.3716 - acc: 0.8984
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.3439 - acc: 0.9039
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.3370 - acc: 0.9036
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.3313 - acc: 0.9002 - val_loss: 3.3695 - val_acc: 0.3424
+
+Epoch 00013: val_loss improved from 3.44094 to 3.36946, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 14/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.2377 - acc: 0.9219
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.2410 - acc: 0.9238
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.2423 - acc: 0.9206
+1024/1763 [================>.............] - ETA: 1s - loss: 1.2539 - acc: 0.9150
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.2609 - acc: 0.9117
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.2704 - acc: 0.9062
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.2745 - acc: 0.9058 - val_loss: 3.5112 - val_acc: 0.3447
+
+Epoch 00014: val_loss did not improve from 3.36946
+Epoch 15/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.2742 - acc: 0.9297
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.2861 - acc: 0.9180
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.2646 - acc: 0.9219
+1024/1763 [================>.............] - ETA: 1s - loss: 1.2661 - acc: 0.9268
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.2696 - acc: 0.9227
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.2873 - acc: 0.9147
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.2958 - acc: 0.9109 - val_loss: 2.5101 - val_acc: 0.3424
+
+Epoch 00015: val_loss improved from 3.36946 to 2.51011, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 16/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.3056 - acc: 0.9219
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.3401 - acc: 0.9043
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.3396 - acc: 0.9076
+1024/1763 [================>.............] - ETA: 1s - loss: 1.3521 - acc: 0.9033
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.3349 - acc: 0.9109
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.3179 - acc: 0.9128
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.3070 - acc: 0.9144 - val_loss: 2.4497 - val_acc: 0.4127
+
+Epoch 00016: val_loss improved from 2.51011 to 2.44973, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 17/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.1669 - acc: 0.9648
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.1722 - acc: 0.9473
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.1553 - acc: 0.9401
+1024/1763 [================>.............] - ETA: 1s - loss: 1.1625 - acc: 0.9365
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.1690 - acc: 0.9359
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.1751 - acc: 0.9329
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.1821 - acc: 0.9308 - val_loss: 2.3399 - val_acc: 0.4195
+
+Epoch 00017: val_loss improved from 2.44973 to 2.33987, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 18/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.2017 - acc: 0.9219
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.1965 - acc: 0.9238
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.1745 - acc: 0.9271
+1024/1763 [================>.............] - ETA: 1s - loss: 1.1725 - acc: 0.9248
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.1571 - acc: 0.9320
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.1559 - acc: 0.9303
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.1536 - acc: 0.9314 - val_loss: 2.5667 - val_acc: 0.3764
+
+Epoch 00018: val_loss did not improve from 2.33987
+Epoch 19/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.1185 - acc: 0.9336
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.0916 - acc: 0.9434
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.0831 - acc: 0.9466
+1024/1763 [================>.............] - ETA: 1s - loss: 1.1060 - acc: 0.9375
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.1069 - acc: 0.9367
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.1206 - acc: 0.9342
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.1222 - acc: 0.9308 - val_loss: 1.7868 - val_acc: 0.7664
+
+Epoch 00019: val_loss improved from 2.33987 to 1.78680, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 20/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.0949 - acc: 0.9453
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.0790 - acc: 0.9434
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.0928 - acc: 0.9388
+1024/1763 [================>.............] - ETA: 1s - loss: 1.1006 - acc: 0.9355
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.1014 - acc: 0.9344
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.1026 - acc: 0.9342
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.0973 - acc: 0.9353 - val_loss: 1.9707 - val_acc: 0.6508
+
+Epoch 00020: val_loss did not improve from 1.78680
+Epoch 21/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.0074 - acc: 0.9570
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9872 - acc: 0.9648
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.0221 - acc: 0.9492
+1024/1763 [================>.............] - ETA: 1s - loss: 1.0171 - acc: 0.9531
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.0345 - acc: 0.9469
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.0519 - acc: 0.9414
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.0529 - acc: 0.9387 - val_loss: 2.5770 - val_acc: 0.3991
+
+Epoch 00021: val_loss did not improve from 1.78680
+Epoch 22/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.0214 - acc: 0.9531
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9907 - acc: 0.9590
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.0098 - acc: 0.9453
+1024/1763 [================>.............] - ETA: 1s - loss: 1.0369 - acc: 0.9375
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.0444 - acc: 0.9344
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.0564 - acc: 0.9303
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.0728 - acc: 0.9291 - val_loss: 2.5516 - val_acc: 0.4036
+
+Epoch 00022: val_loss did not improve from 1.78680
+Epoch 23/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 1.0441 - acc: 0.9531
+ 512/1763 [=======>......................] - ETA: 1s - loss: 1.0530 - acc: 0.9336
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.0388 - acc: 0.9440
+1024/1763 [================>.............] - ETA: 1s - loss: 1.0395 - acc: 0.9385
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.0343 - acc: 0.9375
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.0423 - acc: 0.9342
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.0412 - acc: 0.9336 - val_loss: 1.9155 - val_acc: 0.6485
+
+Epoch 00023: val_loss did not improve from 1.78680
+Epoch 24/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9669 - acc: 0.9570
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9534 - acc: 0.9570
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9538 - acc: 0.9544
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9871 - acc: 0.9463
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.0074 - acc: 0.9398
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.0043 - acc: 0.9388
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.0069 - acc: 0.9393 - val_loss: 2.2264 - val_acc: 0.4218
+
+Epoch 00024: val_loss did not improve from 1.78680
+Epoch 25/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9567 - acc: 0.9570
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9867 - acc: 0.9453
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.0035 - acc: 0.9414
+1024/1763 [================>.............] - ETA: 1s - loss: 1.0170 - acc: 0.9424
+1280/1763 [====================>.........] - ETA: 0s - loss: 1.0231 - acc: 0.9391
+1536/1763 [=========================>....] - ETA: 0s - loss: 1.0229 - acc: 0.9388
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.0234 - acc: 0.9387 - val_loss: 1.3094 - val_acc: 0.8549
+
+Epoch 00025: val_loss improved from 1.78680 to 1.30942, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 26/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9848 - acc: 0.9492
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9714 - acc: 0.9570
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9820 - acc: 0.9505
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9864 - acc: 0.9502
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9932 - acc: 0.9492
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9919 - acc: 0.9479
+1763/1763 [==============================] - 3s 2ms/step - loss: 1.0068 - acc: 0.9450 - val_loss: 2.0386 - val_acc: 0.4376
+
+Epoch 00026: val_loss did not improve from 1.30942
+Epoch 27/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9894 - acc: 0.9414
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9825 - acc: 0.9434
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9675 - acc: 0.9440
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9591 - acc: 0.9482
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9648 - acc: 0.9508
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9801 - acc: 0.9466
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9839 - acc: 0.9433 - val_loss: 1.8308 - val_acc: 0.6395
+
+Epoch 00027: val_loss did not improve from 1.30942
+Epoch 28/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9561 - acc: 0.9609
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9535 - acc: 0.9551
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9448 - acc: 0.9518
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9430 - acc: 0.9512
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9475 - acc: 0.9508
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9546 - acc: 0.9486
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9525 - acc: 0.9490 - val_loss: 1.5097 - val_acc: 0.7664
+
+Epoch 00028: val_loss did not improve from 1.30942
+Epoch 29/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9615 - acc: 0.9414
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9829 - acc: 0.9316
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9777 - acc: 0.9401
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9762 - acc: 0.9395
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9851 - acc: 0.9344
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9902 - acc: 0.9368
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9846 - acc: 0.9382 - val_loss: 2.1164 - val_acc: 0.4603
+
+Epoch 00029: val_loss did not improve from 1.30942
+Epoch 30/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9786 - acc: 0.9414
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9895 - acc: 0.9434
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9913 - acc: 0.9505
+1024/1763 [================>.............] - ETA: 1s - loss: 1.0050 - acc: 0.9424
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9962 - acc: 0.9445
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9835 - acc: 0.9434
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9744 - acc: 0.9455 - val_loss: 1.4593 - val_acc: 0.7732
+
+Epoch 00030: val_loss did not improve from 1.30942
+Epoch 31/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9565 - acc: 0.9453
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9941 - acc: 0.9492
+ 768/1763 [============>.................] - ETA: 1s - loss: 1.0062 - acc: 0.9453
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9974 - acc: 0.9443
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9827 - acc: 0.9492
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9794 - acc: 0.9518
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9723 - acc: 0.9524 - val_loss: 1.6991 - val_acc: 0.7619
+
+Epoch 00031: val_loss did not improve from 1.30942
+Epoch 32/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9011 - acc: 0.9648
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9778 - acc: 0.9336
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9818 - acc: 0.9349
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9843 - acc: 0.9355
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9907 - acc: 0.9344
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9940 - acc: 0.9303
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9824 - acc: 0.9353 - val_loss: 1.9395 - val_acc: 0.7166
+
+Epoch 00032: val_loss did not improve from 1.30942
+Epoch 33/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.8851 - acc: 0.9727
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.8998 - acc: 0.9707
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9284 - acc: 0.9583
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9240 - acc: 0.9600
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9294 - acc: 0.9547
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9361 - acc: 0.9570
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9365 - acc: 0.9552 - val_loss: 1.3957 - val_acc: 0.8458
+
+Epoch 00033: val_loss did not improve from 1.30942
+Epoch 34/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.8982 - acc: 0.9648
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9241 - acc: 0.9512
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9118 - acc: 0.9531
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9160 - acc: 0.9502
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9124 - acc: 0.9523
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9070 - acc: 0.9544
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9147 - acc: 0.9507 - val_loss: 1.7921 - val_acc: 0.7007
+
+Epoch 00034: val_loss did not improve from 1.30942
+Epoch 35/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9167 - acc: 0.9531
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9393 - acc: 0.9590
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9437 - acc: 0.9492
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9416 - acc: 0.9521
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9386 - acc: 0.9523
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9388 - acc: 0.9518
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9353 - acc: 0.9518 - val_loss: 1.5580 - val_acc: 0.8186
+
+Epoch 00035: val_loss did not improve from 1.30942
+Epoch 36/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.8811 - acc: 0.9609
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.8916 - acc: 0.9590
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8919 - acc: 0.9570
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9118 - acc: 0.9443
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9125 - acc: 0.9469
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9236 - acc: 0.9421
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9363 - acc: 0.9382 - val_loss: 1.7683 - val_acc: 0.7029
+
+Epoch 00036: val_loss did not improve from 1.30942
+Epoch 37/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9712 - acc: 0.9336
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9401 - acc: 0.9473
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.9316 - acc: 0.9492
+1024/1763 [================>.............] - ETA: 1s - loss: 0.9101 - acc: 0.9541
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.9123 - acc: 0.9531
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.9356 - acc: 0.9512
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.9333 - acc: 0.9501 - val_loss: 1.2986 - val_acc: 0.8662
+
+Epoch 00037: val_loss improved from 1.30942 to 1.29861, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 38/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9792 - acc: 0.9336
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.9128 - acc: 0.9473
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8945 - acc: 0.9505
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8754 - acc: 0.9580
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8683 - acc: 0.9602
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8599 - acc: 0.9616
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8519 - acc: 0.9631 - val_loss: 1.1596 - val_acc: 0.8617
+
+Epoch 00038: val_loss improved from 1.29861 to 1.15957, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 39/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7795 - acc: 0.9766
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7757 - acc: 0.9785
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7889 - acc: 0.9740
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8160 - acc: 0.9678
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8205 - acc: 0.9672
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8324 - acc: 0.9642
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8320 - acc: 0.9654 - val_loss: 1.5212 - val_acc: 0.7959
+
+Epoch 00039: val_loss did not improve from 1.15957
+Epoch 40/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7833 - acc: 0.9727
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7943 - acc: 0.9668
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8198 - acc: 0.9544
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8324 - acc: 0.9512
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8319 - acc: 0.9555
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8419 - acc: 0.9525
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8498 - acc: 0.9501 - val_loss: 1.2656 - val_acc: 0.8526
+
+Epoch 00040: val_loss did not improve from 1.15957
+Epoch 41/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.8248 - acc: 0.9805
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.8519 - acc: 0.9668
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8624 - acc: 0.9661
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8850 - acc: 0.9590
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8843 - acc: 0.9609
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8848 - acc: 0.9616
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8872 - acc: 0.9609 - val_loss: 1.1790 - val_acc: 0.8730
+
+Epoch 00041: val_loss did not improve from 1.15957
+Epoch 42/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.9106 - acc: 0.9414
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.8712 - acc: 0.9590
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8566 - acc: 0.9570
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8450 - acc: 0.9590
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8485 - acc: 0.9563
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8547 - acc: 0.9544
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8627 - acc: 0.9552 - val_loss: 1.3066 - val_acc: 0.8753
+
+Epoch 00042: val_loss did not improve from 1.15957
+Epoch 43/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.8503 - acc: 0.9531
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.8245 - acc: 0.9590
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8250 - acc: 0.9622
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8299 - acc: 0.9619
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8473 - acc: 0.9586
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8487 - acc: 0.9577
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8490 - acc: 0.9597 - val_loss: 1.2155 - val_acc: 0.8685
+
+Epoch 00043: val_loss did not improve from 1.15957
+Epoch 44/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.8468 - acc: 0.9688
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.8761 - acc: 0.9551
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8782 - acc: 0.9544
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8797 - acc: 0.9580
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8723 - acc: 0.9570
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8728 - acc: 0.9557
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8667 - acc: 0.9558 - val_loss: 1.3579 - val_acc: 0.8526
+
+Epoch 00044: val_loss did not improve from 1.15957
+Epoch 45/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7899 - acc: 0.9805
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7997 - acc: 0.9766
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8157 - acc: 0.9753
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8323 - acc: 0.9688
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8304 - acc: 0.9672
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8273 - acc: 0.9688
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8250 - acc: 0.9665 - val_loss: 1.0605 - val_acc: 0.8889
+
+Epoch 00045: val_loss improved from 1.15957 to 1.06052, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 46/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7942 - acc: 0.9648
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.8211 - acc: 0.9648
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8177 - acc: 0.9661
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8087 - acc: 0.9678
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.8094 - acc: 0.9672
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.8130 - acc: 0.9674
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.8155 - acc: 0.9648 - val_loss: 1.3475 - val_acc: 0.8277
+
+Epoch 00046: val_loss did not improve from 1.06052
+Epoch 47/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.8484 - acc: 0.9492
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.8277 - acc: 0.9590
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.8150 - acc: 0.9635
+1024/1763 [================>.............] - ETA: 1s - loss: 0.8091 - acc: 0.9639
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7959 - acc: 0.9664
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7933 - acc: 0.9668
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7907 - acc: 0.9694 - val_loss: 1.1621 - val_acc: 0.8685
+
+Epoch 00047: val_loss did not improve from 1.06052
+Epoch 48/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7654 - acc: 0.9766
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7660 - acc: 0.9746
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7656 - acc: 0.9753
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7790 - acc: 0.9678
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7851 - acc: 0.9625
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7868 - acc: 0.9622
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7923 - acc: 0.9603 - val_loss: 1.2551 - val_acc: 0.8390
+
+Epoch 00048: val_loss did not improve from 1.06052
+Epoch 49/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7352 - acc: 0.9883
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7291 - acc: 0.9844
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7353 - acc: 0.9831
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7467 - acc: 0.9805
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7555 - acc: 0.9766
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7621 - acc: 0.9727
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7620 - acc: 0.9716 - val_loss: 1.1319 - val_acc: 0.8617
+
+Epoch 00049: val_loss did not improve from 1.06052
+Epoch 50/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7645 - acc: 0.9648
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7558 - acc: 0.9668
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7579 - acc: 0.9661
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7576 - acc: 0.9648
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7605 - acc: 0.9664
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7654 - acc: 0.9668
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7663 - acc: 0.9665 - val_loss: 1.1121 - val_acc: 0.8662
+
+Epoch 00050: val_loss did not improve from 1.06052
+Epoch 51/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7359 - acc: 0.9766
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7320 - acc: 0.9766
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7208 - acc: 0.9805
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7205 - acc: 0.9756
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7367 - acc: 0.9711
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7454 - acc: 0.9694
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7590 - acc: 0.9660 - val_loss: 1.6227 - val_acc: 0.7007
+
+Epoch 00051: val_loss did not improve from 1.06052
+Epoch 52/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7527 - acc: 0.9844
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7477 - acc: 0.9727
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7546 - acc: 0.9674
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7541 - acc: 0.9697
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7626 - acc: 0.9641
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7711 - acc: 0.9603
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7765 - acc: 0.9592 - val_loss: 1.2875 - val_acc: 0.8345
+
+Epoch 00052: val_loss did not improve from 1.06052
+Epoch 53/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7894 - acc: 0.9688
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7706 - acc: 0.9707
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7551 - acc: 0.9714
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7537 - acc: 0.9727
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7500 - acc: 0.9711
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7521 - acc: 0.9681
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7587 - acc: 0.9643 - val_loss: 1.0442 - val_acc: 0.8934
+
+Epoch 00053: val_loss improved from 1.06052 to 1.04417, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 54/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7428 - acc: 0.9727
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7310 - acc: 0.9746
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7436 - acc: 0.9635
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7344 - acc: 0.9697
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7353 - acc: 0.9672
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7394 - acc: 0.9661
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7353 - acc: 0.9677 - val_loss: 1.3420 - val_acc: 0.8299
+
+Epoch 00054: val_loss did not improve from 1.04417
+Epoch 55/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7359 - acc: 0.9805
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7508 - acc: 0.9668
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7576 - acc: 0.9648
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7569 - acc: 0.9639
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7720 - acc: 0.9609
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7710 - acc: 0.9629
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7765 - acc: 0.9614 - val_loss: 1.0694 - val_acc: 0.8798
+
+Epoch 00055: val_loss did not improve from 1.04417
+Epoch 56/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7131 - acc: 0.9805
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7222 - acc: 0.9785
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7415 - acc: 0.9701
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7434 - acc: 0.9727
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7431 - acc: 0.9727
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7431 - acc: 0.9707
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7475 - acc: 0.9711 - val_loss: 1.1351 - val_acc: 0.8571
+
+Epoch 00056: val_loss did not improve from 1.04417
+Epoch 57/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7780 - acc: 0.9609
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7960 - acc: 0.9629
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7766 - acc: 0.9688
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7733 - acc: 0.9648
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7683 - acc: 0.9664
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7680 - acc: 0.9668
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7684 - acc: 0.9665 - val_loss: 1.1008 - val_acc: 0.8730
+
+Epoch 00057: val_loss did not improve from 1.04417
+Epoch 58/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7118 - acc: 0.9805
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.6966 - acc: 0.9883
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7210 - acc: 0.9766
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7364 - acc: 0.9746
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7486 - acc: 0.9719
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7476 - acc: 0.9733
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7480 - acc: 0.9722 - val_loss: 1.0085 - val_acc: 0.8980
+
+Epoch 00058: val_loss improved from 1.04417 to 1.00847, saving model to /home/jiajunh/CNN/kfold_1/_weights.hdf5
+Epoch 59/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.6842 - acc: 0.9883
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.6850 - acc: 0.9785
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.6899 - acc: 0.9779
+1024/1763 [================>.............] - ETA: 1s - loss: 0.6887 - acc: 0.9824
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7016 - acc: 0.9773
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7069 - acc: 0.9759
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7094 - acc: 0.9767 - val_loss: 1.0516 - val_acc: 0.8730
+
+Epoch 00059: val_loss did not improve from 1.00847
+Epoch 60/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7342 - acc: 0.9570
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7317 - acc: 0.9629
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7236 - acc: 0.9661
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7271 - acc: 0.9639
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7326 - acc: 0.9633
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7424 - acc: 0.9642
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7614 - acc: 0.9603 - val_loss: 1.1323 - val_acc: 0.8798
+
+Epoch 00060: val_loss did not improve from 1.00847
+Epoch 61/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7544 - acc: 0.9766
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7567 - acc: 0.9727
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7346 - acc: 0.9766
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7291 - acc: 0.9756
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7296 - acc: 0.9734
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7391 - acc: 0.9694
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7442 - acc: 0.9677 - val_loss: 1.4923 - val_acc: 0.7619
+
+Epoch 00061: val_loss did not improve from 1.00847
+Epoch 62/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7237 - acc: 0.9805
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7255 - acc: 0.9746
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7133 - acc: 0.9818
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7199 - acc: 0.9775
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7283 - acc: 0.9750
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7472 - acc: 0.9714
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7477 - acc: 0.9733 - val_loss: 1.1278 - val_acc: 0.8526
+
+Epoch 00062: val_loss did not improve from 1.00847
+Epoch 63/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7610 - acc: 0.9609
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7298 - acc: 0.9727
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7466 - acc: 0.9648
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7501 - acc: 0.9648
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7516 - acc: 0.9648
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7546 - acc: 0.9661
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7549 - acc: 0.9654 - val_loss: 1.1527 - val_acc: 0.8549
+
+Epoch 00063: val_loss did not improve from 1.00847
+Epoch 64/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7068 - acc: 0.9766
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.6984 - acc: 0.9766
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.6996 - acc: 0.9766
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7065 - acc: 0.9756
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7066 - acc: 0.9766
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7211 - acc: 0.9707
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7329 - acc: 0.9671 - val_loss: 1.4031 - val_acc: 0.8095
+
+Epoch 00064: val_loss did not improve from 1.00847
+Epoch 65/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7282 - acc: 0.9727
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7144 - acc: 0.9785
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7031 - acc: 0.9792
+1024/1763 [================>.............] - ETA: 1s - loss: 0.6995 - acc: 0.9795
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7186 - acc: 0.9750
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7229 - acc: 0.9759
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7296 - acc: 0.9722 - val_loss: 1.0579 - val_acc: 0.8980
+
+Epoch 00065: val_loss did not improve from 1.00847
+Epoch 66/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7523 - acc: 0.9609
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7463 - acc: 0.9668
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7512 - acc: 0.9648
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7458 - acc: 0.9668
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7419 - acc: 0.9656
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7458 - acc: 0.9648
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7433 - acc: 0.9671 - val_loss: 1.0153 - val_acc: 0.8866
+
+Epoch 00066: val_loss did not improve from 1.00847
+Epoch 67/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.6937 - acc: 0.9883
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7022 - acc: 0.9746
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7096 - acc: 0.9753
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7174 - acc: 0.9756
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7186 - acc: 0.9766
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7178 - acc: 0.9753
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7176 - acc: 0.9750 - val_loss: 1.0478 - val_acc: 0.8776
+
+Epoch 00067: val_loss did not improve from 1.00847
+Epoch 68/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7220 - acc: 0.9648
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7191 - acc: 0.9707
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7090 - acc: 0.9766
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7068 - acc: 0.9756
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7267 - acc: 0.9680
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7328 - acc: 0.9668
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7364 - acc: 0.9648 - val_loss: 1.7520 - val_acc: 0.6508
+
+Epoch 00068: val_loss did not improve from 1.00847
+Epoch 69/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7384 - acc: 0.9766
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7203 - acc: 0.9766
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7349 - acc: 0.9674
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7526 - acc: 0.9590
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7559 - acc: 0.9602
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7579 - acc: 0.9603
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7543 - acc: 0.9631 - val_loss: 1.5312 - val_acc: 0.7370
+
+Epoch 00069: val_loss did not improve from 1.00847
+Epoch 70/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.6577 - acc: 0.9922
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.6740 - acc: 0.9844
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7027 - acc: 0.9779
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7174 - acc: 0.9766
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7182 - acc: 0.9781
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7181 - acc: 0.9766
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7115 - acc: 0.9779 - val_loss: 1.2206 - val_acc: 0.8503
+
+Epoch 00070: val_loss did not improve from 1.00847
+Epoch 71/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.6732 - acc: 0.9883
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.6786 - acc: 0.9941
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.6869 - acc: 0.9857
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7020 - acc: 0.9805
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7129 - acc: 0.9805
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7222 - acc: 0.9766
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7277 - acc: 0.9745 - val_loss: 1.0490 - val_acc: 0.8821
+
+Epoch 00071: val_loss did not improve from 1.00847
+Epoch 72/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.6792 - acc: 0.9805
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.6790 - acc: 0.9785
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.6857 - acc: 0.9766
+1024/1763 [================>.............] - ETA: 1s - loss: 0.6829 - acc: 0.9795
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.6830 - acc: 0.9789
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.6817 - acc: 0.9785
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.6839 - acc: 0.9779 - val_loss: 1.0323 - val_acc: 0.8980
+
+Epoch 00072: val_loss did not improve from 1.00847
+Epoch 73/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7375 - acc: 0.9844
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7271 - acc: 0.9805
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7322 - acc: 0.9766
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7224 - acc: 0.9775
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7096 - acc: 0.9789
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7069 - acc: 0.9766
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7089 - acc: 0.9756 - val_loss: 1.0227 - val_acc: 0.8866
+
+Epoch 00073: val_loss did not improve from 1.00847
+Epoch 74/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7400 - acc: 0.9727
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7162 - acc: 0.9805
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7146 - acc: 0.9753
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7125 - acc: 0.9736
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7167 - acc: 0.9711
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7199 - acc: 0.9707
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7151 - acc: 0.9716 - val_loss: 1.0588 - val_acc: 0.8707
+
+Epoch 00074: val_loss did not improve from 1.00847
+Epoch 75/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.6906 - acc: 0.9648
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.6835 - acc: 0.9766
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.6765 - acc: 0.9779
+1024/1763 [================>.............] - ETA: 1s - loss: 0.6781 - acc: 0.9766
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.6916 - acc: 0.9734
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.6982 - acc: 0.9733
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7165 - acc: 0.9705 - val_loss: 1.0729 - val_acc: 0.8798
+
+Epoch 00075: val_loss did not improve from 1.00847
+Epoch 76/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7204 - acc: 0.9844
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.6933 - acc: 0.9863
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.6850 - acc: 0.9857
+1024/1763 [================>.............] - ETA: 1s - loss: 0.6957 - acc: 0.9805
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7038 - acc: 0.9805
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7131 - acc: 0.9772
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7207 - acc: 0.9739 - val_loss: 1.1892 - val_acc: 0.8617
+
+Epoch 00076: val_loss did not improve from 1.00847
+Epoch 77/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7219 - acc: 0.9766
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7009 - acc: 0.9805
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.6773 - acc: 0.9857
+1024/1763 [================>.............] - ETA: 1s - loss: 0.6750 - acc: 0.9824
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.6767 - acc: 0.9844
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.6920 - acc: 0.9818
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7012 - acc: 0.9784 - val_loss: 1.0376 - val_acc: 0.8844
+
+Epoch 00077: val_loss did not improve from 1.00847
+Epoch 78/200
+
+ 256/1763 [===>..........................] - ETA: 2s - loss: 0.7495 - acc: 0.9570
+ 512/1763 [=======>......................] - ETA: 1s - loss: 0.7335 - acc: 0.9629
+ 768/1763 [============>.................] - ETA: 1s - loss: 0.7171 - acc: 0.9635
+1024/1763 [================>.............] - ETA: 1s - loss: 0.7135 - acc: 0.9629
+1280/1763 [====================>.........] - ETA: 0s - loss: 0.7220 - acc: 0.9586
+1536/1763 [=========================>....] - ETA: 0s - loss: 0.7198 - acc: 0.9622
+1763/1763 [==============================] - 3s 2ms/step - loss: 0.7228 - acc: 0.9626 - val_loss: 1.0792 - val_acc: 0.8844
+
+Epoch 00078: val_loss did not improve from 1.00847
+[[1 0 0 ... 0 0 0]
+ [1 0 0 ... 0 0 0]
+ [1 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 1]]
+[[8.38759303e-01 5.59351502e-05 6.92332536e-02 ... 1.23921083e-04
+  1.47333937e-02 7.77589437e-03]
+ [9.96877789e-01 5.41565441e-06 6.67504442e-04 ... 7.28011946e-06
+  5.05723059e-04 5.20524685e-04]
+ [3.79516482e-01 2.87230854e-04 1.78778842e-02 ... 1.21254539e-04
+  4.44298461e-02 7.28635341e-02]
+ ...
+ [1.40604466e-01 5.76043210e-04 7.62637183e-02 ... 2.51007470e-04
+  1.11998186e-01 5.47946811e-01]
+ [9.45448697e-01 3.31448136e-05 3.30906478e-03 ... 1.65339588e-05
+  2.12247521e-02 1.79170631e-02]
+ [1.76791698e-01 4.97644825e-04 1.64154228e-02 ... 3.41805193e-04
+  7.96461478e-02 6.04930639e-01]]
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
+[1, 1, 6, 6, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 6, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 1, 1, 1, 1, 4, 3, 3, 3, 3, 3, 3, 6, 6, 1, 1, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 6, 6, 6, 6, 6, 6, 6, 6, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 6, 6, 1, 1, 1, 6, 6, 6, 6, 6, 6, 6, 1, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 6, 8, 6, 8, 6, 1, 8, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3, 6, 1, 6, 6, 6, 6, 6, 8, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 6, 6, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 1, 6, 9, 3, 9, 8, 6, 8, 9, 3, 6, 9, 3, 9, 3, 9, 9, 1, 9]
+f1score: 0.7272727272727273
+recall: 0.8571428571428571
+precision: 0.631578947368421
+f1score: 0
+recall: 0.0
+precision: 0
+f1score: 0.9639175257731958
+recall: 0.9946808510638298
+precision: 0.935
+f1score: 0.6
+recall: 0.42857142857142855
+precision: 1.0
+f1score: 0
+recall: 0.0
+precision: 0
+f1score: 0.9313543599257885
+recall: 0.916058394160584
+precision: 0.9471698113207547
+f1score: 0.5714285714285715
+recall: 0.4
+precision: 1.0
+f1score: 0.8214285714285714
+recall: 0.9583333333333334
+precision: 0.71875
+f1score: 0.6206896551724138
+recall: 0.45
+precision: 1.0
+f1score: 0.5817879345556966
+recall: 0.5560874293635591
+precision: 0.692499862076575
+acc: 0.977699530516432
+value for precision:0.692 ,recall:0.556  , f1score:0.582, acc:0.978

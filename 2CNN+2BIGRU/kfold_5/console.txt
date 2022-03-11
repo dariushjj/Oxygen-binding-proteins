@@ -1,0 +1,576 @@
+>>> Imports:
+#coding=utf-8
+
+from __future__ import print_function
+
+try:
+    import numpy as np
+except:
+    pass
+
+try:
+    from utils import *
+except:
+    pass
+
+try:
+    import math
+except:
+    pass
+
+try:
+    import tensorflow as tf
+except:
+    pass
+
+try:
+    from keras.backend.tensorflow_backend import set_session
+except:
+    pass
+
+try:
+    from keras.models import Sequential, Model
+except:
+    pass
+
+try:
+    from keras.layers import Dense, Dropout, Activation, GRU
+except:
+    pass
+
+try:
+    from keras.layers import Embedding, concatenate, Flatten
+except:
+    pass
+
+try:
+    from keras.layers import Conv1D
+except:
+    pass
+
+try:
+    from keras.layers.pooling import GlobalAveragePooling1D, GlobalMaxPooling1D, MaxPooling1D
+except:
+    pass
+
+try:
+    from keras.layers import Input
+except:
+    pass
+
+try:
+    from keras.layers.normalization import BatchNormalization
+except:
+    pass
+
+try:
+    import logging
+except:
+    pass
+
+try:
+    import json
+except:
+    pass
+
+try:
+    from keras.preprocessing import sequence
+except:
+    pass
+
+try:
+    from keras.callbacks import EarlyStopping, ModelCheckpoint
+except:
+    pass
+
+try:
+    from hyperas.distributions import uniform, choice
+except:
+    pass
+
+try:
+    from hyperopt import Trials, STATUS_OK, tpe
+except:
+    pass
+
+try:
+    from hyperas import optim
+except:
+    pass
+
+try:
+    import keras
+except:
+    pass
+
+try:
+    from keras import regularizers
+except:
+    pass
+
+try:
+    from keras.utils import multi_gpu_model
+except:
+    pass
+
+try:
+    from tensorflow.contrib.metrics import streaming_auc
+except:
+    pass
+
+try:
+    from sklearn.metrics import matthews_corrcoef, recall_score, f1_score
+except:
+    pass
+
+try:
+    from my_utils import *
+except:
+    pass
+
+try:
+    import os
+except:
+    pass
+
+try:
+    import tensorflow as tf
+except:
+    pass
+
+try:
+    from keras.backend.tensorflow_backend import set_session
+except:
+    pass
+
+try:
+    from adabound import AdaBound
+except:
+    pass
+
+try:
+    from sklearn.preprocessing import LabelBinarizer
+except:
+    pass
+
+try:
+    from keras.utils import to_categorical
+except:
+    pass
+
+try:
+    import sys
+except:
+    pass
+
+>>> Hyperas search space:
+
+def get_space():
+    return {
+        'filters': hp.choice('filters', [16 ,  32, 64, 128]),
+        'kernel_size': hp.choice('kernel_size', [3,5,7, 11, 15, 19, 21]),
+        'Dropout': hp.uniform('Dropout', 0, 1),
+        'filters_1': hp.choice('filters_1', [16, 32,64, 128]),
+        'kernel_size_1': hp.choice('kernel_size_1', [3,5,7, 11, 15, 19, 21]),
+        'Dropout_1': hp.uniform('Dropout_1', 0, 1),
+        'pool_size': hp.choice('pool_size', [8,16, 32]),
+        'strides': hp.choice('strides', [8,16, 32, 64]),
+        'units': hp.choice('units', [100,200, 300, 400]),
+        'Dropout_2': hp.uniform('Dropout_2', 0, 1),
+        'units_1': hp.choice('units_1', [100,200, 300, 400]),
+        'Dropout_3': hp.uniform('Dropout_3', 0, 1),
+        'units_2': hp.choice('units_2', [100,200, 300, 400]),
+        'Dropout_4': hp.uniform('Dropout_4', 0, 1),
+        'units_3': hp.choice('units_3', [100,200, 300, 400]),
+        'Dropout_5': hp.uniform('Dropout_5', 0, 1),
+        'units_4': hp.choice('units_4', [64,128,256]),
+        'l1_l2': hp.choice('l1_l2', [0.001, 0.0001, 0.00001]),
+        'epochs': hp.choice('epochs', [50,100,150,200]),
+        'batch_size': hp.choice('batch_size', [32,64]),
+    }
+
+>>> Data
+   1: 
+   2: max_sequence_size=800
+   3: logging.debug("Target Gene Ontology :BP ")
+   4: train_file = '/home/jiajunh/kfold_5/all_train.pkl'
+   5: pssm_file = '/home/wanglei/data/Oxygen/npy'
+   6: test_file = '/home/jiajunh/kfold_5/all_test.pkl'
+   7: pssm_test_file = '/home/wanglei/data/Oxygen/npy'
+   8: logging.info("Preparing train data ... ")
+   9: 
+  10: features = []
+  11: train_df=pd.read_pickle(train_file)
+  12: 
+  13: def reshape(values):
+  14:     values=np.hstack(values).reshape(len(values),len(values[0]))
+  15:     return values
+  16: 
+  17: for i,row in train_df.iterrows():
+  18:     pdb_id=row['pdb_id']
+  19:     extra_feature=get_extra_feature(pssm_file,pdb_id)
+  20:     features.append(extra_feature)
+  21: 
+  22: logging.info('Padding sequences to %d ... ' % max_sequence_size)
+  23: X=sequence.pad_sequences(train_df['ngrams'].values,maxlen=max_sequence_size)
+  24: y=train_df['labels'].values
+  25: lb = LabelBinarizer()
+  26: 
+  27: y = lb.fit_transform(y)  # transfer label to binary value
+  28: 
+  29: #y = to_categorical(y)  # transfer binary label to one-hot. IMPORTANT
+  30: X_all=np.array(X)
+  31: y_all=np.array(y)
+  32: pssm_ssacc=np.array(features)
+  33: logging.info("Input shape: %s" % str(X_all.shape))
+  34: logging.info("Output shape: %s" % str(y_all.shape))
+  35: logging.info("pssm and ssacc shape:%s" % str(pssm_ssacc.shape))
+  36: n = X_all.shape[0]
+  37: 
+  38: # randomize to shuffle first
+  39: randomize = np.arange(n)
+  40: np.random.shuffle(randomize)
+  41: 
+  42: X_train = X_all[randomize]
+  43: y_train_temp = y_all[randomize]
+  44: y_train=reshape(y_train_temp)
+  45: X_extra = pssm_ssacc[randomize]
+  46: 
+  47: logging.info('------------------------------------------------')
+  48: logging.info('preparing the test data...')
+  49: 
+  50: features_test = []
+  51: test_df = pd.read_pickle(test_file)
+  52: for i,row in test_df.iterrows():
+  53:     pdb_id = row['pdb_id']
+  54:     extra_feature = get_extra_feature(pssm_test_file, pdb_id)
+  55:     features_test.append(extra_feature)
+  56: logging.info('Padding sequences to %d ... ' % max_sequence_size)
+  57: X_temp = sequence.pad_sequences(test_df['ngrams'].values, maxlen=max_sequence_size)
+  58: y_temp = test_df['labels'].values
+  59: X_test=np.array(X_temp)
+  60: y_test_temp=np.array(y_temp)
+  61: y_test=reshape(y_test_temp)
+  62: pssm_ssacc_test=np.array(features_test)
+  63: logging.info("Input shape: %s" % str(X_test.shape))
+  64: logging.info("Output shape: %s" % str(y_test.shape))
+  65: logging.info("pssm and ssacc shape:%s" % str(pssm_ssacc_test.shape))
+  66: 
+  67: 
+  68: 
+>>> Resulting replaced keras model:
+
+   1: def keras_fmin_fnct(space):
+   2: 
+   3:     # num_amino_acids = 22  # alphabet of proteins +1 for padding
+   4:     model_snapshot_directory = "/home/jiajunh/kfold_5"
+   5:     max_features = 20
+   6:     # model = get_cnn_model(num_amino_acids, 2000, 1, target_function)
+   7:     #target_function='bp'
+   8:     #func_df=pd.read_pickle('../data/'+str(target_function)+'_all.pkl')
+   9:     #functions=func_df['functions'].values
+  10:     output_node=9
+  11: 
+  12:     input_embed = Input(shape=(800,), name='input_embed')
+  13:     input_extra = Input(shape=(800, 20,), name='input_extra')
+  14:     embedded = Embedding(max_features, 128, input_length=800)(input_embed)
+  15:     x1 = concatenate([embedded, input_extra], axis=2)
+  16:     x1 = Conv1D(filters=space['filters'], kernel_size=space['kernel_size'],
+  17:                 activation='relu', strides=1,name='conv1')(x1)
+  18:     x1 = Dropout(space['Dropout'],name='drop1')(x1)
+  19:     x1 = Conv1D(filters=space['filters_1'], kernel_size=space['kernel_size_1'],
+  20:                 activation='relu', strides=1,name='conv2')(x1)
+  21:     x1 = Dropout(space['Dropout_1'],name='drop2')(x1)
+  22:     x1 = MaxPooling1D(pool_size=space['pool_size'], strides=space['strides'],name='maxpooling')(x1)
+  23:     x1 = BatchNormalization()(x1)
+  24: 
+  25:     x1_left = GRU(units=space['units'], recurrent_activation='hard_sigmoid',
+  26:              use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros',
+  27:              activation='tanh', return_sequences=True, dropout=space['Dropout_2'],name='gru1')(x1)
+  28:     x1_right = GRU(units=space['units_1'], recurrent_activation='hard_sigmoid',
+  29:              use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros',
+  30:              activation='tanh', return_sequences=True, dropout=space['Dropout_3'],name='gru2',
+  31:              go_backwards='True')(x1)
+  32:     xgru1 = keras.layers.concatenate([x1_left, x1_right], axis=-1)
+  33: 
+  34:     x2_left=GRU(units=space['units_2'], recurrent_activation='hard_sigmoid',
+  35:              use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros',
+  36:              activation='tanh', return_sequences=True, dropout=space['Dropout_4'],name='gru3')(xgru1)
+  37:     x2_right=GRU(units=space['units_3'], recurrent_activation='hard_sigmoid',
+  38:              use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros',
+  39:              activation='tanh', return_sequences=True, dropout=space['Dropout_5'],name='gru4',
+  40:            go_backwards='True')(xgru1)
+  41:     x_gru=keras.layers.concatenate([x2_left,x2_right],axis=-1)
+  42: 
+  43:     x = BatchNormalization()(x_gru)
+  44:     x = Flatten()(x)
+  45:     x = Dense(units=space['units_4'], activation='relu',
+  46:               kernel_regularizer=regularizers.l1_l2(space['l1_l2']),name='dense1')(x)
+  47:     x = BatchNormalization()(x)
+  48:     output = Dense(output_node, activation='softmax')(x)
+  49:     model = Model(inputs=[input_embed, input_extra], outputs=output)
+  50:     print(model.summary())
+  51: 
+  52:     loss_fn = 'categorical_crossentropy'
+  53:     adam = keras.optimizers.Adam(lr=10 ** -3,clipnorm=1.)
+  54:     optim = AdaBound(lr=1e-03, final_lr=0.1, gamma=1e-03, weight_decay=0, amsbound=False)
+  55: 
+  56:     filepath = model_snapshot_directory + '/'+ '_weights.hdf5'
+  57:     gpu_model = multi_gpu_model(model, 2)
+  58:     # model.compile(loss=loss_fn, optimizer=adam, metrics=['accuracy'])
+  59:     gpu_model.compile(loss=loss_fn, optimizer=optim, metrics=['accuracy'])
+  60:     early_stopping = EarlyStopping(monitor='val_loss', patience=20, mode='min')
+  61:     checkpointer = ModelCheckpoint(filepath=filepath, monitor='val_loss', verbose=1,
+  62:                                    save_best_only=True, save_weights_only=True, mode='min')
+  63:     callback_list = [early_stopping, checkpointer]
+  64:     hist = gpu_model.fit(x={'input_embed': X_train, 'input_extra': X_extra},
+  65:                          y=y_train,
+  66:                          epochs=space['epochs'], batch_size=space['batch_size'],
+  67:                          verbose=1, callbacks=callback_list,
+  68:                          validation_split=0.2)
+  69:     score, acc =gpu_model.evaluate(x={'input_embed':X_train,'input_extra':X_extra},y=y_train)
+  70:     h1 = hist.history
+  71:     epoch=hist.epoch
+  72:     acc_ = np.asarray(h1['acc'])
+  73:     loss_ = np.asarray((h1['loss']))
+  74:     val_acc = np.asarray(h1['val_acc'])
+  75:     val_loss = np.asarray(h1['val_loss'])
+  76:     acc_and_loss = np.column_stack((epoch,acc_, loss_, val_acc, val_loss))
+  77:     save_file_mlp = model_snapshot_directory + '/mlp_run_' + '.txt'
+  78:     with open(save_file_mlp, 'w') as f:
+  79:         np.savetxt(save_file_mlp, acc_and_loss, delimiter=" ")
+  80:     print('train accuracy:', acc)
+  81:     print('train score:',score)
+  82:     print("Test:------------------------------------------------------------")
+  83:     # score_test,acc_test = gpu_model.evaluate(x={'input_embed': X_test, 'input_extra': pssm_ssacc_test}, y=y_test)
+  84:     # y_preds=gpu_model.predict(x={'input_embed':X_test,'input_extra':pssm_ssacc_test})
+  85: 
+  86:     # get the best threshold according to mcc value
+  87:     return {'loss': -acc, 'status': STATUS_OK, 'model': gpu_model}
+  88: 
+  0%|          | 0/50 [00:00<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    Layer (type)                    Output Shape         Param #     Connected to                     
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    ==================================================================================================
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    input_embed (InputLayer)        (None, 800)          0                                            
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    embedding_1 (Embedding)         (None, 800, 128)     2560        input_embed[0][0]                
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    input_extra (InputLayer)        (None, 800, 20)      0                                            
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    concatenate_1 (Concatenate)     (None, 800, 148)     0           embedding_1[0][0]                
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                                                                                     input_extra[0][0]                
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    conv1 (Conv1D)                  (None, 780, 32)      99488       concatenate_1[0][0]              
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    drop1 (Dropout)                 (None, 780, 32)      0           conv1[0][0]                      
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    conv2 (Conv1D)                  (None, 774, 64)      14400       drop1[0][0]                      
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    drop2 (Dropout)                 (None, 774, 64)      0           conv2[0][0]                      
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    maxpooling (MaxPooling1D)       (None, 48, 64)       0           drop2[0][0]                      
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    batch_normalization_1 (BatchNor (None, 48, 64)       256         maxpooling[0][0]                 
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    gru1 (GRU)                      (None, 48, 400)      558000      batch_normalization_1[0][0]      
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    gru2 (GRU)                      (None, 48, 300)      328500      batch_normalization_1[0][0]      
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    concatenate_2 (Concatenate)     (None, 48, 700)      0           gru1[0][0]                       
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                                                                                     gru2[0][0]                       
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    gru3 (GRU)                      (None, 48, 100)      240300      concatenate_2[0][0]              
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    gru4 (GRU)                      (None, 48, 200)      540600      concatenate_2[0][0]              
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    concatenate_3 (Concatenate)     (None, 48, 300)      0           gru3[0][0]                       
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                                                                                     gru4[0][0]                       
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    batch_normalization_2 (BatchNor (None, 48, 300)      1200        concatenate_3[0][0]              
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    flatten_1 (Flatten)             (None, 14400)        0           batch_normalization_2[0][0]      
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    dense1 (Dense)                  (None, 256)          3686656     flatten_1[0][0]                  
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    batch_normalization_3 (BatchNor (None, 256)          1024        dense1[0][0]                     
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    dense_1 (Dense)                 (None, 9)            2313        batch_normalization_3[0][0]      
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    ==================================================================================================
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    Total params: 5,475,297
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    Trainable params: 5,474,057
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    Non-trainable params: 1,240
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    __________________________________________________________________________________________________
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    None
+  0%|          | 0/50 [00:02<?, ?it/s, best loss: ?]                                                    Train on 1758 samples, validate on 440 samples
+  0%|          | 0/50 [00:19<?, ?it/s, best loss: ?]                                                    Epoch 1/100
+  0%|          | 0/50 [00:19<?, ?it/s, best loss: ?]                                                      64/1758 [>.............................]
+  0%|          | 0/50 [00:34<?, ?it/s, best loss: ?]                                                     - ETA: 6:36 - loss: 11.8021 - acc: 0.0781
+  0%|          | 0/50 [00:34<?, ?it/s, best loss: ?]                                                     128/1758 [=>............................]
+  0%|          | 0/50 [00:35<?, ?it/s, best loss: ?]                                                     - ETA: 3:28 - loss: 11.7103 - acc: 0.3672
+  0%|          | 0/50 [00:35<?, ?it/s, best loss: ?]                                                     192/1758 [==>...........................]
+  0%|          | 0/50 [00:37<?, ?it/s, best loss: ?]                                                     - ETA: 2:24 - loss: 11.4724 - acc: 0.4948
+  0%|          | 0/50 [00:37<?, ?it/s, best loss: ?]                                                     256/1758 [===>..........................]
+  0%|          | 0/50 [00:38<?, ?it/s, best loss: ?]                                                     - ETA: 1:51 - loss: 11.4325 - acc: 0.5156
+  0%|          | 0/50 [00:38<?, ?it/s, best loss: ?]                                                     320/1758 [====>.........................]
+  0%|          | 0/50 [00:39<?, ?it/s, best loss: ?]                                                     - ETA: 1:31 - loss: 11.3640 - acc: 0.5594
+  0%|          | 0/50 [00:39<?, ?it/s, best loss: ?]                                                     384/1758 [=====>........................]
+  0%|          | 0/50 [00:41<?, ?it/s, best loss: ?]                                                     - ETA: 1:17 - loss: 11.3193 - acc: 0.5859
+  0%|          | 0/50 [00:41<?, ?it/s, best loss: ?]                                                     448/1758 [======>.......................]
+  0%|          | 0/50 [00:42<?, ?it/s, best loss: ?]                                                     - ETA: 1:07 - loss: 11.1255 - acc: 0.6161
+  0%|          | 0/50 [00:42<?, ?it/s, best loss: ?]                                                     512/1758 [=======>......................]
+  0%|          | 0/50 [00:43<?, ?it/s, best loss: ?]                                                     - ETA: 59s - loss: 10.9817 - acc: 0.6289 
+  0%|          | 0/50 [00:43<?, ?it/s, best loss: ?]                                                     576/1758 [========>.....................]
+  0%|          | 0/50 [00:45<?, ?it/s, best loss: ?]                                                     - ETA: 52s - loss: 10.9091 - acc: 0.6233
+  0%|          | 0/50 [00:45<?, ?it/s, best loss: ?]                                                     640/1758 [=========>....................]
+  0%|          | 0/50 [00:46<?, ?it/s, best loss: ?]                                                     - ETA: 47s - loss: 10.7673 - acc: 0.6406
+  0%|          | 0/50 [00:46<?, ?it/s, best loss: ?]                                                     704/1758 [===========>..................]
+  0%|          | 0/50 [00:47<?, ?it/s, best loss: ?]                                                     - ETA: 42s - loss: 10.6623 - acc: 0.6534
+  0%|          | 0/50 [00:47<?, ?it/s, best loss: ?]                                                     768/1758 [============>.................]
+  0%|          | 0/50 [00:49<?, ?it/s, best loss: ?]                                                     - ETA: 38s - loss: 10.5512 - acc: 0.6706
+  0%|          | 0/50 [00:49<?, ?it/s, best loss: ?]                                                     832/1758 [=============>................]
+  0%|          | 0/50 [00:50<?, ?it/s, best loss: ?]                                                     - ETA: 34s - loss: 10.4923 - acc: 0.6791
+  0%|          | 0/50 [00:50<?, ?it/s, best loss: ?]                                                     896/1758 [==============>...............]
+  0%|          | 0/50 [00:51<?, ?it/s, best loss: ?]                                                     - ETA: 31s - loss: 10.4216 - acc: 0.6830
+  0%|          | 0/50 [00:51<?, ?it/s, best loss: ?]                                                     960/1758 [===============>..............]
+  0%|          | 0/50 [00:53<?, ?it/s, best loss: ?]                                                     - ETA: 27s - loss: 10.3430 - acc: 0.6917
+  0%|          | 0/50 [00:53<?, ?it/s, best loss: ?]                                                    1024/1758 [================>.............]
+  0%|          | 0/50 [00:54<?, ?it/s, best loss: ?]                                                     - ETA: 25s - loss: 10.3011 - acc: 0.6914
+  0%|          | 0/50 [00:54<?, ?it/s, best loss: ?]                                                    1088/1758 [=================>............]
+  0%|          | 0/50 [00:55<?, ?it/s, best loss: ?]                                                     - ETA: 22s - loss: 10.2704 - acc: 0.6939
+  0%|          | 0/50 [00:55<?, ?it/s, best loss: ?]                                                    1152/1758 [==================>...........]
+  0%|          | 0/50 [00:57<?, ?it/s, best loss: ?]                                                     - ETA: 19s - loss: 10.1744 - acc: 0.7057
+  0%|          | 0/50 [00:57<?, ?it/s, best loss: ?]                                                    1216/1758 [===================>..........]
+  0%|          | 0/50 [00:58<?, ?it/s, best loss: ?]                                                     - ETA: 17s - loss: 10.0964 - acc: 0.7138
+  0%|          | 0/50 [00:58<?, ?it/s, best loss: ?]                                                    1280/1758 [====================>.........]
+  0%|          | 0/50 [00:59<?, ?it/s, best loss: ?]                                                     - ETA: 15s - loss: 10.0480 - acc: 0.7180
+  0%|          | 0/50 [00:59<?, ?it/s, best loss: ?]                                                    1344/1758 [=====================>........]
+  0%|          | 0/50 [01:01<?, ?it/s, best loss: ?]                                                     - ETA: 12s - loss: 10.0154 - acc: 0.7158
+  0%|          | 0/50 [01:01<?, ?it/s, best loss: ?]                                                    1408/1758 [=======================>......]
+  0%|          | 0/50 [01:02<?, ?it/s, best loss: ?]                                                     - ETA: 10s - loss: 9.9772 - acc: 0.7138 
+  0%|          | 0/50 [01:02<?, ?it/s, best loss: ?]                                                    1472/1758 [========================>.....]
+  0%|          | 0/50 [01:03<?, ?it/s, best loss: ?]                                                     - ETA: 8s - loss: 9.9327 - acc: 0.7113 
+  0%|          | 0/50 [01:03<?, ?it/s, best loss: ?]                                                    1536/1758 [=========================>....]
+  0%|          | 0/50 [01:05<?, ?it/s, best loss: ?]                                                     - ETA: 6s - loss: 9.8810 - acc: 0.7122
+  0%|          | 0/50 [01:05<?, ?it/s, best loss: ?]                                                    1600/1758 [==========================>...]
+  0%|          | 0/50 [01:06<?, ?it/s, best loss: ?]                                                     - ETA: 4s - loss: 9.8245 - acc: 0.7119
+  0%|          | 0/50 [01:06<?, ?it/s, best loss: ?]                                                    1664/1758 [===========================>..]
+  0%|          | 0/50 [01:07<?, ?it/s, best loss: ?]                                                     - ETA: 2s - loss: 9.7739 - acc: 0.7151
+  0%|          | 0/50 [01:07<?, ?it/s, best loss: ?]                                                    1728/1758 [============================>.]
+  0%|          | 0/50 [01:09<?, ?it/s, best loss: ?]                                                     - ETA: 0s - loss: 9.7222 - acc: 0.7147
+  0%|          | 0/50 [01:09<?, ?it/s, best loss: ?]                                                    1758/1758 [==============================]
+  0%|          | 0/50 [01:13<?, ?it/s, best loss: ?]                                                     - 54s 31ms/step - loss: 9.6978 - acc: 0.7127 - val_loss: 14.8427 - val_acc: 0.5045
+
+  0%|          | 0/50 [01:13<?, ?it/s, best loss: ?]                                                    
+Epoch 00001: val_loss improved from inf to 14.84267, saving model to /home/jiajunh/kfold_5/_weights.hdf5
+  0%|          | 0/50 [01:13<?, ?it/s, best loss: ?]                                                    Epoch 2/100
+  0%|          | 0/50 [01:14<?, ?it/s, best loss: ?]                                                      64/1758 [>.............................]
+  0%|          | 0/50 [01:15<?, ?it/s, best loss: ?]                                                     - ETA: 36s - loss: 8.2299 - acc: 0.6875
+  0%|          | 0/50 [01:15<?, ?it/s, best loss: ?]                                                     128/1758 [=>............................]
+  0%|          | 0/50 [01:17<?, ?it/s, best loss: ?]                                                     - ETA: 34s - loss: 7.8960 - acc: 0.7500
+  0%|          | 0/50 [01:17<?, ?it/s, best loss: ?]                                                     192/1758 [==>...........................]
+  0%|          | 0/50 [01:18<?, ?it/s, best loss: ?]                                                     - ETA: 32s - loss: 7.7700 - acc: 0.7656
+  0%|          | 0/50 [01:18<?, ?it/s, best loss: ?]                                                     256/1758 [===>..........................]
+  0%|          | 0/50 [01:19<?, ?it/s, best loss: ?]                                                     - ETA: 31s - loss: 7.8662 - acc: 0.7344
+  0%|          | 0/50 [01:19<?, ?it/s, best loss: ?]                                                     320/1758 [====>.........................]
+  0%|          | 0/50 [01:21<?, ?it/s, best loss: ?]                                                     - ETA: 30s - loss: 7.7746 - acc: 0.7406
+  0%|          | 0/50 [01:21<?, ?it/s, best loss: ?]                                                     384/1758 [=====>........................]
+  0%|          | 0/50 [01:22<?, ?it/s, best loss: ?]                                                     - ETA: 28s - loss: 7.7034 - acc: 0.7422
+  0%|          | 0/50 [01:22<?, ?it/s, best loss: ?]                                                     448/1758 [======>.......................]
+  0%|          | 0/50 [01:23<?, ?it/s, best loss: ?]                                                     - ETA: 27s - loss: 7.6122 - acc: 0.7500
+  0%|          | 0/50 [01:23<?, ?it/s, best loss: ?]                                                     512/1758 [=======>......................]
+  0%|          | 0/50 [01:25<?, ?it/s, best loss: ?]                                                     - ETA: 26s - loss: 7.5480 - acc: 0.7578
+  0%|          | 0/50 [01:25<?, ?it/s, best loss: ?]                                                     576/1758 [========>.....................]
+  0%|          | 0/50 [01:26<?, ?it/s, best loss: ?]                                                     - ETA: 24s - loss: 7.4736 - acc: 0.7656
+  0%|          | 0/50 [01:26<?, ?it/s, best loss: ?]                                                     640/1758 [=========>....................]
+  0%|          | 0/50 [01:27<?, ?it/s, best loss: ?]                                                     - ETA: 23s - loss: 7.3675 - acc: 0.7766
+  0%|          | 0/50 [01:27<?, ?it/s, best loss: ?]                                                     704/1758 [===========>..................]
+  0%|          | 0/50 [01:28<?, ?it/s, best loss: ?]                                                     - ETA: 21s - loss: 7.3291 - acc: 0.7784
+  0%|          | 0/50 [01:28<?, ?it/s, best loss: ?]                                                     768/1758 [============>.................]
+  0%|          | 0/50 [01:30<?, ?it/s, best loss: ?]                                                     - ETA: 20s - loss: 7.2750 - acc: 0.7799
+  0%|          | 0/50 [01:30<?, ?it/s, best loss: ?]                                                     832/1758 [=============>................]
+  0%|          | 0/50 [01:31<?, ?it/s, best loss: ?]                                                     - ETA: 19s - loss: 7.1844 - acc: 0.7849
+  0%|          | 0/50 [01:31<?, ?it/s, best loss: ?]                                                     896/1758 [==============>...............]
+  0%|          | 0/50 [01:33<?, ?it/s, best loss: ?]                                                     - ETA: 17s - loss: 7.1333 - acc: 0.7835
+  0%|          | 0/50 [01:33<?, ?it/s, best loss: ?]                                                     960/1758 [===============>..............]
+  0%|          | 0/50 [01:34<?, ?it/s, best loss: ?]                                                     - ETA: 16s - loss: 7.0706 - acc: 0.7823
+  0%|          | 0/50 [01:34<?, ?it/s, best loss: ?]                                                    1024/1758 [================>.............]
+  0%|          | 0/50 [01:35<?, ?it/s, best loss: ?]                                                     - ETA: 15s - loss: 7.0202 - acc: 0.7812
+  0%|          | 0/50 [01:35<?, ?it/s, best loss: ?]                                                    1088/1758 [=================>............]
+  0%|          | 0/50 [01:36<?, ?it/s, best loss: ?]                                                     - ETA: 13s - loss: 6.9568 - acc: 0.7803
+  0%|          | 0/50 [01:36<?, ?it/s, best loss: ?]                                                    1152/1758 [==================>...........]
+  0%|          | 0/50 [01:37<?, ?it/s, best loss: ?]                                                     - ETA: 12s - loss: 6.8912 - acc: 0.7804
+  0%|          | 0/50 [01:37<?, ?it/s, best loss: ?]                                                    1216/1758 [===================>..........]
+  0%|          | 0/50 [01:38<?, ?it/s, best loss: ?]                                                     - ETA: 10s - loss: 6.8287 - acc: 0.7796
+  0%|          | 0/50 [01:38<?, ?it/s, best loss: ?]                                                    1280/1758 [====================>.........]
+  0%|          | 0/50 [01:39<?, ?it/s, best loss: ?]                                                     - ETA: 9s - loss: 6.7628 - acc: 0.7820 
+  0%|          | 0/50 [01:39<?, ?it/s, best loss: ?]                                                    1344/1758 [=====================>........]
+  0%|          | 0/50 [01:41<?, ?it/s, best loss: ?]                                                     - ETA: 8s - loss: 6.7074 - acc: 0.7820
+  0%|          | 0/50 [01:41<?, ?it/s, best loss: ?]                                                    1408/1758 [=======================>......]
+  0%|          | 0/50 [01:42<?, ?it/s, best loss: ?]                                                     - ETA: 6s - loss: 6.6490 - acc: 0.7848
+  0%|          | 0/50 [01:42<?, ?it/s, best loss: ?]                                                    1472/1758 [========================>.....]
+  0%|          | 0/50 [01:43<?, ?it/s, best loss: ?]                                                     - ETA: 5s - loss: 6.5890 - acc: 0.7860
+  0%|          | 0/50 [01:43<?, ?it/s, best loss: ?]                                                    1536/1758 [=========================>....]
+  0%|          | 0/50 [01:44<?, ?it/s, best loss: ?]                                                     - ETA: 4s - loss: 6.5210 - acc: 0.7884
+  0%|          | 0/50 [01:44<?, ?it/s, best loss: ?]                                                    1600/1758 [==========================>...]
+  0%|          | 0/50 [01:46<?, ?it/s, best loss: ?]                                                     - ETA: 3s - loss: 6.4664 - acc: 0.7875
+  0%|          | 0/50 [01:46<?, ?it/s, best loss: ?]                                                    1664/1758 [===========================>..]
+  0%|          | 0/50 [01:47<?, ?it/s, best loss: ?]                                                     - ETA: 1s - loss: 6.4001 - acc: 0.7897
+  0%|          | 0/50 [01:47<?, ?it/s, best loss: ?]                                                    1728/1758 [============================>.]
+  0%|          | 0/50 [01:49<?, ?it/s, best loss: ?]                                                     - ETA: 0s - loss: 6.3544 - acc: 0.7882
+  0%|          | 0/50 [01:49<?, ?it/s, best loss: ?]                                                    1758/1758 [==============================]
+  0%|          | 0/50 [01:52<?, ?it/s, best loss: ?]                                                     - 38s 22ms/step - loss: 6.3246 - acc: 0.7884 - val_loss: 6.4233 - val_acc: 0.6705
+
+  0%|          | 0/50 [01:52<?, ?it/s, best loss: ?]                                                    
+Epoch 00002: val_loss improved from 14.84267 to 6.42332, saving model to /home/jiajunh/kfold_5/_weights.hdf5
+  0%|          | 0/50 [01:52<?, ?it/s, best loss: ?]                                                    Epoch 3/100
+  0%|          | 0/50 [01:52<?, ?it/s, best loss: ?]                                                      64/1758 [>.............................]
+  0%|          | 0/50 [01:54<?, ?it/s, best loss: ?]                                                     - ETA: 35s - loss: 4.5298 - acc: 0.8438
+  0%|          | 0/50 [01:54<?, ?it/s, best loss: ?]                                                     128/1758 [=>............................]
+  0%|          | 0/50 [01:55<?, ?it/s, best loss: ?]                                                     - ETA: 33s - loss: 4.6049 - acc: 0.8203
+  0%|          | 0/50 [01:55<?, ?it/s, best loss: ?]                                                     192/1758 [==>...........................]
+  0%|          | 0/50 [01:56<?, ?it/s, best loss: ?]                                                     - ETA: 32s - loss: 4.5106 - acc: 0.8385
+  0%|          | 0/50 [01:56<?, ?it/s, best loss: ?]                                                     256/1758 [===>..........................]
+  0%|          | 0/50 [01:58<?, ?it/s, best loss: ?]                                                     - ETA: 31s - loss: 4.4460 - acc: 0.8281
+  0%|          | 0/50 [01:58<?, ?it/s, best loss: ?]                                                     320/1758 [====>.........................]
+  0%|          | 0/50 [01:59<?, ?it/s, best loss: ?]                                                     - ETA: 29s - loss: 4.3880 - acc: 0.8281
+  0%|          | 0/50 [01:59<?, ?it/s, best loss: ?]                                                     384/1758 [=====>........................]
+  0%|          | 0/50 [02:00<?, ?it/s, best loss: ?]                                                     - ETA: 28s - loss: 4.4116 - acc: 0.8099
+  0%|          | 0/50 [02:00<?, ?it/s, best loss: ?]                                                     448/1758 [======>.......................]
+  0%|          | 0/50 [02:02<?, ?it/s, best loss: ?]                                                     - ETA: 27s - loss: 4.3614 - acc: 0.8147
+  0%|          | 0/50 [02:02<?, ?it/s, best loss: ?]                                                     512/1758 [=======>......................]
+  0%|          | 0/50 [02:03<?, ?it/s, best loss: ?]                                                     - ETA: 25s - loss: 4.3127 - acc: 0.8184
+  0%|          | 0/50 [02:03<?, ?it/s, best loss: ?]                                                     576/1758 [========>.....................]
+  0%|          | 0/50 [02:04<?, ?it/s, best loss: ?]                                                     - ETA: 24s - loss: 4.2739 - acc: 0.8212
+  0%|          | 0/50 [02:04<?, ?it/s, best loss: ?]                                                     640/1758 [=========>....................]
+  0%|          | 0/50 [02:06<?, ?it/s, best loss: ?]                                                     - ETA: 23s - loss: 4.2549 - acc: 0.8187
+  0%|          | 0/50 [02:06<?, ?it/s, best loss: ?]                                                     704/1758 [===========>..................]
+  0%|          | 0/50 [02:07<?, ?it/s, best loss: ?]                                                     - ETA: 22s - loss: 4.2214 - acc: 0.8182
+  0%|          | 0/50 [02:07<?, ?it/s, best loss: ?]                                                     768/1758 [============>.................]
+  0%|          | 0/50 [02:08<?, ?it/s, best loss: ?]                                                     - ETA: 20s - loss: 4.1771 - acc: 0.8216
+  0%|          | 0/50 [02:08<?, ?it/s, best loss: ?]                                                     832/1758 [=============>................]
+  0%|          | 0/50 [02:10<?, ?it/s, best loss: ?]                                                     - ETA: 19s - loss: 4.1420 - acc: 0.8233
+  0%|          | 0/50 [02:10<?, ?it/s, best loss: ?]                                                     896/1758 [==============>...............]
+  0%|          | 0/50 [02:11<?, ?it/s, best loss: ?]                                                     - ETA: 18s - loss: 4.1135 - acc: 0.8214
+  0%|          | 0/50 [02:11<?, ?it/s, best loss: ?]                                                     960/1758 [===============>..............]
+  0%|          | 0/50 [02:12<?, ?it/s, best loss: ?]                                                     - ETA: 16s - loss: 4.0649 - acc: 0.8240
+  0%|          | 0/50 [02:12<?, ?it/s, best loss: ?]                                                    1024/1758 [================>.............]
+  0%|          | 0/50 [02:14<?, ?it/s, best loss: ?]                                                     - ETA: 15s - loss: 4.0375 - acc: 0.8223
+  0%|          | 0/50 [02:14<?, ?it/s, best loss: ?]                                                    1088/1758 [=================>............]
+  0%|          | 0/50 [02:15<?, ?it/s, best loss: ?]                                                     - ETA: 14s - loss: 4.0171 - acc: 0.8199
+  0%|          | 0/50 [02:15<?, ?it/s, best loss: ?]                                                    1152/1758 [==================>...........]
+  0%|          | 0/50 [02:16<?, ?it/s, best loss: ?]                                                     - ETA: 12s - loss: 4.0039 - acc: 0.8125
+  0%|          | 0/50 [02:16<?, ?it/s, best loss: ?]                                                    1216/1758 [===================>..........]
+  0%|          | 0/50 [02:18<?, ?it/s, best loss: ?]                                                     - ETA: 11s - loss: 3.9575 - acc: 0.8150
+  0%|          | 0/50 [02:18<?, ?it/s, best loss: ?]                                                    1280/1758 [====================>.........]
+  0%|          | 0/50 [02:19<?, ?it/s, best loss: ?]                                                     - ETA: 9s - loss: 3.9344 - acc: 0.8133 
+  0%|          | 0/50 [02:19<?, ?it/s, best loss: ?]                                                    1344/1758 [=====================>........]
+  0%|          | 0/50 [02:20<?, ?it/s, best loss: ?]                                                     - ETA: 8s - loss: 3.8965 - acc: 0.8140
+  0%|          | 0/50 [02:20<?, ?it/s, best loss: ?]                                                    1408/1758 [=======================>......]
+  0%|          | 0/50 [02:22<?, ?it/s, best loss: ?]                                                     - ETA: 7s - loss: 3.8609 - acc: 0.8125
+  0%|          | 0/50 [02:22<?, ?it/s, best loss: ?]                                                    1472/1758 [========================>.....]
+  0%|          | 0/50 [02:23<?, ?it/s, best loss: ?]                                                     - ETA: 5s - loss: 3.8340 - acc: 0.8118
+  0%|          | 0/50 [02:23<?, ?it/s, best loss: ?]                                                    1536/1758 [=========================>....]
+  0%|          | 0/50 [02:24<?, ?it/s, best loss: ?]                                                     - ETA: 4s - loss: 3.7977 - acc: 0.8112
+  0%|          | 0/50 [02:24<?, ?it/s, best loss: ?]                                                    1600/1758 [==========================>...]
+  0%|          | 0/50 [02:26<?, ?it/s, best loss: ?]                                                     - ETA: 3s - loss: 3.7555 - acc: 0.8156
+  0%|          | 0/50 [02:26<?, ?it/s, best loss: ?]
